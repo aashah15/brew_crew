@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'brew_tile.dart';
 
 class BrewList extends StatefulWidget {
-  BrewList({Key? key}) : super(key: key);
+  const BrewList({Key? key}) : super(key: key);
 
   @override
   _BrewListState createState() => _BrewListState();

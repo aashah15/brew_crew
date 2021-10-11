@@ -9,13 +9,13 @@ class BrewsProvider with ChangeNotifier {
     List<Brew> newList = [];
     QuerySnapshot snapshot =
         await FirebaseFirestore.instance.collection("brews").get();
-    snapshot.docs.forEach((doc) {
+    for (var doc in snapshot.docs) {
       brew = Brew(
           name: doc.get('name'),
           strength: doc.get('strenght'),
           sugars: doc.get('sugars'));
       newList.add(brew);
-    });
+    }
     brews = newList;
     notifyListeners();
   }

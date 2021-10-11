@@ -18,8 +18,9 @@ class Home extends StatelessWidget {
           context: context,
           builder: (context) {
             return Container(
-              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-              child: SettingsForm(),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+              child: const SettingsForm(),
             );
           });
     }
@@ -40,13 +41,13 @@ class Home extends StatelessWidget {
             style: TextButton.styleFrom(primary: Colors.black),
           ),
           TextButton.icon(
-              icon: Icon(Icons.settings),
-              label: Text('Settings'),
+              icon: const Icon(Icons.settings),
+              label: const Text('Settings'),
               style: TextButton.styleFrom(primary: Colors.black),
               onPressed: () => _showSettingsPanel())
         ],
       ),
-      body: BrewList(),
+      body: const BrewList(),
     );
   }
 }
