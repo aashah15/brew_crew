@@ -1,3 +1,4 @@
+import 'package:brew_crew/models/my_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -17,39 +18,17 @@ class DatabaseService with ChangeNotifier {
     });
   }
 
-  // brew list from snapshot
-  // List<Brew> brews = [];
-  // late Brew brew;
-  // getBrews() async {
-  //   List<Brew> newList = [];
-  //   QuerySnapshot snapshot =
-  //       await FirebaseFirestore.instance.collection("brews").get();
-  //   snapshot.docs.forEach((doc) {
-  //     brew = Brew(
-  //         name: doc.get('name'),
-  //         strength: doc.get('strenght'),
-  //         sugars: doc.get('sugars'));
-  //     newList.add(brew);
-  //   });
-  //   brews = newList;
-  //   notifyListeners();
-  // }
+  // user data from snapshots
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(
+        uid: uid,
+        name: snapshot['name'],
+        sugars: snapshot['sugars'],
+        strength: snapshot['strength']);
+  }
 
-  // List<Brew> get brewsList {
-  //   return brews;
-  // }
-  // List<Brew> _brewsFromSnapshot(QuerySnapshot snapshot) {
-  //   List<Brew> list = snapshot.docs.map((doc) {
-  //     return Brew(
-  //         name: doc.get('name'),
-  //         strength: int.parse(doc.get('strength').toString()),
-  //         sugars: doc.get('sugars').toString());
-  //   }).toList();
-  //   return list;
-  // }
-
-  // // get brews stream
-  // Stream<List<Brew>> get brews {
-  //   return brewCollection.snapshots().map(_brewsFromSnapshot);
-  // }
+  // get user doc stream
+  Stream<UserData> get userData {
+    return brewCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
+  }
 }
