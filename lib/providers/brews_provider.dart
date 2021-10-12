@@ -12,7 +12,7 @@ class BrewsProvider with ChangeNotifier {
     for (var doc in snapshot.docs) {
       brew = Brew(
           name: doc.get('name'),
-          strength: doc.get('strenght'),
+          strength: doc.get('strength'),
           sugars: doc.get('sugars'));
       newList.add(brew);
     }
