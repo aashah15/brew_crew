@@ -1,5 +1,4 @@
 import 'package:brew_crew/models/brew.dart';
-import 'package:brew_crew/providers/brews_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,16 +12,21 @@ class BrewList extends StatefulWidget {
 }
 
 class _BrewListState extends State<BrewList> {
-  late BrewsProvider brewsProvider;
+  // late BrewsProvider brewsProvider;
 
   @override
   Widget build(BuildContext context) {
-    // final brews = Provider.of<List<Brew>?>(context) ?? [];
-    brewsProvider = Provider.of(context);
-    final brews = brewsProvider.brewsList.map((e) {
-      return Brew(name: e.name, strength: e.strength, sugars: e.sugars);
-    }).toList();
+    final brews = Provider.of<List<Brew>?>(context) ?? [];
+    // brewsProvider = Provider.of(context);
+    // final brews = brewsProvider.brewsList.map((e) {
+    //   return Brew(name: e.name, strength: e.strength, sugars: e.sugars);
+    // }).toList();
     // final brews = brewsProvider.forEach((brew) {
+    //   print(brew.name);
+    //   print(brew.sugars);
+    //   print(brew.strength);
+    // });
+
     //   print(brew.name);
     //   print(brew.sugars);
     //   print(brew.strength);

@@ -1,8 +1,8 @@
+import 'package:brew_crew/models/brew.dart';
 import 'package:brew_crew/models/my_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
-class DatabaseService with ChangeNotifier {
+class DatabaseService {
   final String uid;
 
   DatabaseService({required this.uid});
@@ -14,8 +14,22 @@ class DatabaseService with ChangeNotifier {
     return await brewCollection.doc(uid).set({
       'sugars': sugars,
       'name': name,
-      'strenght': strength,
+      'strength': strength,
     });
+  }
+
+  // brew list from snapshot
+  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      //print(doc.data);
+      return Brew(
+          name: doc['name'], strength: doc['strength'], sugars: doc['sugars']);
+    }).toList();
+  }
+
+  // get brews stream
+  Stream<List<Brew>> get brews {
+    return brewCollection.snapshots().map(_brewListFromSnapshot);
   }
 
   // user data from snapshots
